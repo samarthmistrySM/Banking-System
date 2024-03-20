@@ -8,8 +8,8 @@ public class TransferTransaction {
     private DepositTransaction _deposit;
     private WithdrawTransaction _withdraw;
 
-    public boolean _executed;
-    public boolean _reversed;
+    private boolean _executed;
+    private boolean _reversed;
 
     public TransferTransaction(Account fromAccount, Account toAccount, double amount) {
         this._fromAccount = fromAccount;

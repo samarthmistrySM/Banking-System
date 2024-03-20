@@ -1,10 +1,10 @@
 public class WithdrawTransaction {
 
-    public Account _account;
-    public double _amount;
-    public boolean _executed;
-    public boolean _success;
-    public boolean _reversed;
+    private Account _account;
+    private double _amount;
+    private boolean _executed;
+    private boolean _success;
+    private boolean _reversed;
 
     public WithdrawTransaction(Account account, double amount) {
         this._account = account;

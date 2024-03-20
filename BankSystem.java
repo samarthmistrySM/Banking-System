@@ -85,7 +85,7 @@ public class BankSystem {
             }
             Account fromAccount = bank.GetAccount(fromName);
             Account toAccount = bank.GetAccount(toName);
-            System.out.println("Enter the amount you want to trafsfer from " + fromAccount._name + " account to " + toAccount._name + " account");
+            System.out.println("Enter the amount you want to trafsfer from " + fromAccount.getName() + " account to " + toAccount.getName() + " account");
             double amount = sc.nextDouble();
 
             TransferTransaction transfer = new TransferTransaction(fromAccount, toAccount, amount);

@@ -1,6 +1,6 @@
 public class DepositTransaction {
 
-    public Account _account;
+    private Account _account;
     public double _amount;
     public boolean _executed;
     public boolean _success;
@@ -31,7 +31,7 @@ public class DepositTransaction {
         else if (_reversed)
             System.out.println("Deposit Reversed..");
         else if (_success) {
-            System.out.println("Deposit of " + this._amount + " to " + this._account._name + " Completed..");
+            System.out.println("Deposit of " + this._amount + " to " + this._account.getName() + " Completed..");
         }
     }
 

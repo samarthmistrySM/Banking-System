@@ -1,6 +1,6 @@
 public class Account {
-    public double _balance;
-    public String _name;
+    private double _balance;
+    private String _name;
 
     public String getName(){
         return this._name;

@@ -31,7 +31,7 @@ public class WithdrawTransaction {
         else if (_reversed)
             System.out.println("Withdraw Reversed..");
         else if (_success) {
-            System.out.println("Withdraw of " + this._amount + " from " + this._account._name + " Completed..");
+            System.out.println("Withdraw of " + this._amount + " from " + this._account.getName() + " Completed..");
         }
     }
 

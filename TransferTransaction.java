@@ -1,12 +1,12 @@
 public class TransferTransaction {
 
-    public Account _fromAccount;
-    public Account _toAccount;
+    private Account _fromAccount;
+    private Account _toAccount;
 
     public double _amount;
 
-    public DepositTransaction _deposit;
-    public WithdrawTransaction _withdraw;
+    private DepositTransaction _deposit;
+    private WithdrawTransaction _withdraw;
 
     public boolean _executed;
     public boolean _reversed;
@@ -41,7 +41,7 @@ public class TransferTransaction {
         else if (_reversed)
             System.out.println("Transfer Reversed..");
         else if (Success()) {
-            System.out.println("Transfer of " + this._amount + " from " + this._fromAccount._name + " to " + this._toAccount._name
+            System.out.println("Transfer of " + this._amount + " from " + this._fromAccount.getName() + " to " + this._toAccount.getName()
                     + " Completed..");
         }
     }

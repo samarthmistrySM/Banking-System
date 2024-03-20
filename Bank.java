@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Bank {
 
-    public ArrayList<Account> _accounts = new ArrayList<>();
+    private ArrayList<Account> _accounts = new ArrayList<>();
     public Scanner sc =  new Scanner(System.in);
 
     public Bank(){}
@@ -14,7 +14,7 @@ public class Bank {
     public Account GetAccount(String Name){
         Account account = null;
         for(Account acc : _accounts){
-            if(acc._name.equals(Name)){
+            if(acc.getName().equals(Name)){
                 account = acc;
             }
         }
@@ -23,7 +23,7 @@ public class Bank {
 
     public boolean FindAccount(String Name){
         for (Account account : _accounts) {
-            if(account._name.equals(Name)){
+            if(account.getName().equals(Name)){
                 return true;
             }
         }

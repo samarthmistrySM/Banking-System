@@ -19,7 +19,7 @@ You can find the source code for this project on [GitHub](https://github.com/gee
 
 ## How to Use
 
-1. **Clone the repository:** [Github](https://github.com/geekysamop/Banking-System.git)
+1. **Clone the repository:** [https://github.com/geekysamop/Banking-System.git]
    
 
 2. **Navigate to the project directory:**

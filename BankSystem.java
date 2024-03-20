@@ -48,7 +48,7 @@ public class BankSystem {
             System.out.println("Enter the amount you want to deposit: ");
             double amount = sc.nextDouble();
             DepositTransaction deposit = new DepositTransaction(account, amount);
-            bank.ExecuteTransaction(deposit);
+            bank.Execute(deposit);
             sc.nextLine();
         } catch (Exception e) {
             TerminalColor.printRed(e + " Try again..");
@@ -66,7 +66,7 @@ public class BankSystem {
             System.out.println("Enter the amount you want to deposit: ");
             double amount = sc.nextDouble();
             WithdrawTransaction withdraw = new WithdrawTransaction(account, amount);
-            bank.ExecuteTransaction(withdraw);
+            bank.Execute(withdraw);
             sc.nextLine();
         } catch (Exception e) {
             TerminalColor.printRed(e + " Try again..");
@@ -89,7 +89,7 @@ public class BankSystem {
             double amount = sc.nextDouble();
 
             TransferTransaction transfer = new TransferTransaction(fromAccount, toAccount, amount);
-            bank.ExecuteTransaction(transfer);
+            bank.Execute(transfer);
             sc.nextLine();
         } catch (Exception e) {
             TerminalColor.printRed(e + " Try again..");

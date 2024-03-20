@@ -3,6 +3,8 @@ import java.util.*;
 public class Bank {
 
     private ArrayList<Account> _accounts = new ArrayList<>();
+    private ArrayList<Transaction> _transactions = new ArrayList<>();
+
     public Scanner sc =  new Scanner(System.in);
 
     public Bank(){}
@@ -30,42 +32,20 @@ public class Bank {
         return false;
     }    
     
-    public void ExecuteTransaction(WithdrawTransaction transaction){
+    public void Execute(Transaction transaction){
+        _transactions.add(transaction);
         try {
             transaction.Execute();
-            System.out.println("Do you want to Rollback? (Y/N)");
-            String Rollback =  sc.nextLine();
-            if(Rollback.toLowerCase() == "y"){
-                transaction.Rollback();
-            }
         } catch (Exception e) {
-            System.out.println(e);
+            TerminalColor.printRed(e + " Try Again..");
         }
     }
 
-    public void ExecuteTransaction(DepositTransaction transaction){
-        try {
-            transaction.Execute();
-            System.out.println("Do you want to Rollback? (Y/N)");
-            String Rollback =  sc.nextLine().toLowerCase();
-            if(Rollback == "y"){
-                transaction.Rollback();
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    public void ExecuteTransaction(TransferTransaction transaction){
-        try {
-            transaction.Execute();
-            System.out.println("Do you want to Rollback? (Y/N)");
-            String Rollback =  sc.nextLine().toLowerCase();
-            if(Rollback == "y"){
-                transaction.Rollback();
-            }
-        } catch (Exception e) {
-            System.out.println(e);
+    public void Rollback(Transaction transaction){
+        try{
+            transaction.Rollback();
+        }catch(Exception e){
+            TerminalColor.printRed(e + " Try Again..");
         }
     }
 }

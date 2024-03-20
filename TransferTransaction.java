@@ -1,44 +1,35 @@
-public class TransferTransaction {
+public class TransferTransaction extends Transaction {
 
     private Account _fromAccount;
     private Account _toAccount;
 
-    public double _amount;
-
     private DepositTransaction _deposit;
     private WithdrawTransaction _withdraw;
 
-    private boolean _executed;
-    private boolean _reversed;
+    
 
     public TransferTransaction(Account fromAccount, Account toAccount, double amount) {
+        super(amount);
+
         this._fromAccount = fromAccount;
         this._toAccount = toAccount;
-        this._amount = amount;
 
         _deposit = new DepositTransaction(toAccount, amount);
         _withdraw = new WithdrawTransaction(fromAccount, amount);
 
     }
 
-    public boolean Executed() {
-        return _executed;
-    }
-
     public boolean Success() {
         return (_deposit.Success() && _withdraw.Success());
     }
 
-    public boolean Reversed() {
-        return _reversed;
-    }
-
     public void Print() {
-        if (!_executed)
+
+        if (!Executed())
             System.out.println("Tranfer Pending..");
         else if (!Success())
             System.out.println("Transfer Failed!");
-        else if (_reversed)
+        else if (Reversed())
             System.out.println("Transfer Reversed..");
         else if (Success()) {
             System.out.println("Transfer of " + this._amount + " from " + this._fromAccount.getName() + " to " + this._toAccount.getName()
@@ -47,14 +38,7 @@ public class TransferTransaction {
     }
 
     public void Execute() {
-        if (_executed) {
-            try {
-                throw new Exception("Transition already executed!");
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-        _executed = true;
+        super.Execute();
         try {
             _withdraw.Execute();
         } catch (Exception e) {
@@ -74,23 +58,12 @@ public class TransferTransaction {
             }
         }
         Print();
+        _success = true;
     }
 
     public void Rollback() {
-        if (_reversed) {
-            try {
-                throw new Exception("Transaction already reversed!");
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        } else if (!_executed) {
-            try {
-                throw new Exception("Transfer not Executed!");
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-        else if(Success()){
+        super.Rollback();
+        if(this.Success()){
             try {
                 _deposit.Rollback();
             } catch (Exception e) {
@@ -104,6 +77,6 @@ public class TransferTransaction {
                 return;
             }
         }
-        _reversed = true;
+        super.SetReversed(true);
     }
 }

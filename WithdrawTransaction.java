@@ -1,79 +1,47 @@
-public class WithdrawTransaction {
+public class WithdrawTransaction extends Transaction {
 
     private Account _account;
-    private double _amount;
-    private boolean _executed;
-    private boolean _success;
-    private boolean _reversed;
 
     public WithdrawTransaction(Account account, double amount) {
+        super(amount);
         this._account = account;
-        this._amount = amount;
     }
 
-    public boolean Executed() {
-        return _executed;
-    }
-
-    public boolean Success(){
-        return _success;
-    }
-
-    public boolean Reversed(){
-        return _reversed;
-    }
-
+    @Override
     public void Print() {
-        if (!_executed)
+        if (!Executed())
             System.out.println("Withdraw Pending..");
-        else if (!_success)
+        else if (!Success())
             System.out.println("Insufficient Balance..");
-        else if (_reversed)
+        else if (Reversed())
             System.out.println("Withdraw Reversed..");
-        else if (_success) {
+        else if (Success()) {
             System.out.println("Withdraw of " + this._amount + " from " + this._account.getName() + " Completed..");
         }
     }
 
-    public void Execute(){
-        if(_executed && _success){
-            try{
-                throw new Exception("Withdraw already executed!");
-            }catch(Exception e){
-                System.out.println(e);
-            }
-        }
-        _executed = true;
+    @Override
+    public void Execute() {
+        super.Execute();
         _success = _account.Withdraw(_amount);
-        // Print();
 
-        if(!_success) System.out.println("Insufficient balance!");
+        if (!_success)
+            System.out.println("Insufficient balance!");
+        Print();
     }
 
-    public void Rollback(){
-        if(_reversed){
-            try {
-                throw new Exception("Transaction already reversed!");
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-        else if(!_success){
-            try {
-                throw new Exception("Nothing to Rollback!");
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-        _reversed = _account.Deposit(_amount);
+    @Override
+    public void Rollback() {
+        super.Rollback();
+        boolean _completed = _account.Deposit(_amount);
 
-        if(!_reversed){
+        if (!_completed) {
             try {
                 throw new Exception("Rollback failed!");
             } catch (Exception e) {
                 System.out.println(e);
             }
         }
+        super.SetReversed(true);
     }
-
 }

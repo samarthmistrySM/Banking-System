@@ -3,9 +3,6 @@ import java.util.Scanner;
 public class BankSystem {
 
     public static Scanner sc = new Scanner(System.in);
-
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
     
     public enum MenuOption{
         ADDACCOUNT,
@@ -24,7 +21,6 @@ public class BankSystem {
     public static void NewAccount(Bank bank){
         TerminalColor.printBlue("Name of account: ");
         String name = sc.nextLine();
-        
         try {
             if(!bank.FindAccount(name)){
                 System.out.println("Enter the balance of the account: ");
@@ -42,50 +38,83 @@ public class BankSystem {
         
     }
 
-    public static void DoDeposit(Account account){
-        System.out.println("Enter the amount you want to Deposit");
+    public static void DoDeposit(Bank bank){
+        System.out.println("Enter the name of your account: ");
+        String name = sc.nextLine();
         try {
+            if(!bank.FindAccount(name)){
+                throw new Exception("The account does not exitst!");
+            }
+            Account account = bank.GetAccount(name);
+            System.out.println("Enter the amount you want to deposit: ");
             double amount = sc.nextDouble();
-            account.Deposit(amount);
+            DepositTransaction deposit = new DepositTransaction(account, amount);
+            bank.ExecuteTransaction(deposit);
             sc.nextLine();
         } catch (Exception e) {
-            System.out.println(e + " Try Again");
+            TerminalColor.printRed(e + " Try again..");
         }
     }
 
-    public static void DoWithdraw( Account account){
-        System.out.println("Enter the amount you want to Withdraw");
+    public static void DoWithdraw(Bank bank){
+        System.out.println("Enter the name of your account: ");
+        String name = sc.nextLine();
         try {
+            if(!bank.FindAccount(name)){
+                throw new Exception("The account does not exitst!");
+            }
+            Account account = bank.GetAccount(name);
+            System.out.println("Enter the amount you want to deposit: ");
             double amount = sc.nextDouble();
-            account.Withdraw(amount);
+            WithdrawTransaction withdraw = new WithdrawTransaction(account, amount);
+            bank.ExecuteTransaction(withdraw);
             sc.nextLine();
         } catch (Exception e) {
-            System.out.println(e + " Try Again");
+            TerminalColor.printRed(e + " Try again..");
         }
     }
 
-    public static void DoTransfer(Account fromAccount, Account toAccount){
-        System.out.println("Enter the amount you want ot transfer from " + fromAccount._name + " to " + toAccount._name );
-        try{
+    public static void DoTransfer(Bank bank){
+        System.out.println("Enter the name of the account you want to transfer from: ");
+        String fromName = sc.nextLine();
+        System.out.println("Enter the name of the account you want to transfer to: ");
+        String toName = sc.nextLine();
+
+        try {
+            if(!bank.FindAccount(fromName) || !bank.FindAccount(toName)){
+                throw new Exception("Account not found..");
+            }
+            Account fromAccount = bank.GetAccount(fromName);
+            Account toAccount = bank.GetAccount(toName);
+            System.out.println("Enter the amount you want to trafsfer from " + fromAccount._name + " account to " + toAccount._name + " account");
             double amount = sc.nextDouble();
+
             TransferTransaction transfer = new TransferTransaction(fromAccount, toAccount, amount);
-            transfer.Execute();
+            bank.ExecuteTransaction(transfer);
             sc.nextLine();
-        }catch(Exception e){
-            System.out.println(e + " Try again");
+        } catch (Exception e) {
+            TerminalColor.printRed(e + " Try again..");
         }
     }
 
-    public static void Print(Account account){
-        account.Print();
+    public static void Print(Bank bank){
+        System.out.println("Enter the name of the account for which you want to print details: ");
+        String name = sc.nextLine();
+
+        try{
+            if(!bank.FindAccount(name)){
+                throw new Exception("Account not found...");
+            }
+            Account account = bank.GetAccount(name);
+            account.Print();
+        }catch (Exception e) {
+            TerminalColor.printRed(e + " Try again..");
+        }
     }
     
     public static void main(String[] args) {
         sc = new Scanner(System.in);
         boolean isQuit = false;
-
-        Account account1 = new Account("Calm", 10000);
-        Account account2 = new Account("Encore", 10000);
 
         Bank bank = new Bank();
 
@@ -94,6 +123,8 @@ public class BankSystem {
             clearScreen();
             TerminalColor.printPurple("======|| Welcome to Bank ||======");
             TerminalColor.printCyan("Enter your Choice: \n1.AddAccount \n2.Deposit \n3.Withdraw \n4.Transfer \n5.Print \n6.QUIT ");
+
+            TerminalColor.printRed("⚠️ First you have to add two Account ⚠️");
 
             int n = sc.nextInt();
 
@@ -109,26 +140,25 @@ public class BankSystem {
                     break;
 
                 case MenuOption.DEPOSIT:
-                    DoDeposit(account1);
+                    DoDeposit(bank);
                     System.out.println("Press Enter to continue...");
                     sc.nextLine();
                     break;
 
                 case MenuOption.WITHDRAW:
-                    DoWithdraw(account1);
+                    DoWithdraw(bank);
                     System.out.println("Press Enter to continue...");
                     sc.nextLine();
                     break;
 
                 case MenuOption.TRANSFER:
-                    DoTransfer(account1,account2);
+                    DoTransfer(bank);
                     System.out.println("Press Enter to continue...");
                     sc.nextLine();
                     break;
 
                 case MenuOption.PRINT:
-                    Print(account1);
-                    Print(account2);
+                    Print(bank);
                     System.out.println("Press Enter to continue...");
                     sc.nextLine();
                     break;

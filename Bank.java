@@ -14,7 +14,7 @@ public class Bank {
     public Account GetAccount(String Name){
         Account account = null;
         for(Account acc : _accounts){
-            if(acc._name == Name){
+            if(acc._name.equals(Name)){
                 account = acc;
             }
         }

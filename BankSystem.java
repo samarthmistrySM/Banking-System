@@ -35,7 +35,6 @@ public class BankSystem {
         } catch (Exception e) {
             System.out.println(e + " Try Again");
         }
-        
     }
 
     public static void DoDeposit(Bank bank){

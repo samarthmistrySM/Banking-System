@@ -6,7 +6,7 @@ A simple Java-based bank system implementation using Object-Oriented Programming
 
 This project implements a basic bank system in Java, demonstrating the use of classes, objects, inheritance, and encapsulation. It provides functionality for creating accounts, depositing and withdrawing money, transferring funds between accounts, and printing account details.
 
-You can find the source code for this project on [GitHub](https://github.com/yourusername/bank-system).
+You can find the source code for this project on [GitHub](https://github.com/geekysamop/bank-system).
 
 ## Features
 
@@ -19,7 +19,7 @@ You can find the source code for this project on [GitHub](https://github.com/you
 
 ## How to Use
 
-1. **Clone the repository:**
+1. **Clone the repository:** [Github](https://github.com/geekysamop/Banking-System.git)
    
 
 2. **Navigate to the project directory:**

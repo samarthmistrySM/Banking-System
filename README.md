@@ -28,7 +28,7 @@ You can find the source code for this project on [GitHub](https://github.com/gee
 3. **Compile the Java files:**
 
 
-4. **Run the program:**
+4. **Run the program:** Run BankSystem.java file
 
 
 5. **Follow the on-screen prompts to interact with the bank system.**

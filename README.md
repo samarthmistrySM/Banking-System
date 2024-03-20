@@ -22,7 +22,7 @@ You can find the source code for this project on [GitHub](https://github.com/gee
 1. **Clone the repository:** https://github.com/geekysamop/Banking-System.git
    
 
-2. **Navigate to the project directory:**
+2. **Navigate to the project directory:** cd Banking-System
 
 
 3. **Compile the Java files:**

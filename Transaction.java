@@ -36,6 +36,10 @@ public class Transaction {
         System.out.println("Transaction Amount: " + this._amount + " Time: " + DateTime());
     }
 
+    public String HistoryHelper() {
+        return ("Transaction Amount: " + this._amount + " and Time: " + DateTime());
+    }
+
     public void Execute() {
         try {
             if (_executed && _success) {

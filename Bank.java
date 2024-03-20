@@ -48,4 +48,26 @@ public class Bank {
             TerminalColor.printRed(e + " Try Again..");
         }
     }
+
+    public String TransactionType(Transaction transaction){
+        switch (transaction.getClass().toString()) {
+            case "class TransferTransaction":
+                return "Transfer";
+
+            case "class WithdrawTransaction":
+                return "Withdraw";
+            
+            case "class DepositTransaction":
+                return "Deposit";
+            }
+            return "Unknown";
+    }
+
+    public void PrintTranscationHistory(){
+        for (Transaction transaction : _transactions) {
+            System.out.println(
+                TransactionType(transaction) + " with " + transaction.HistoryHelper()
+            );
+        }
+    }
 }

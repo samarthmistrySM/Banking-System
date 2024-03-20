@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import javax.sql.rowset.CachedRowSet;
+
 public class BankSystem {
 
     public static Scanner sc = new Scanner(System.in);
@@ -10,6 +12,7 @@ public class BankSystem {
         WITHDRAW,
         TRANSFER,
         PRINT,
+        PRINT_TRANSACTION_HISTORY,
         QUIT
     }
 
@@ -63,7 +66,7 @@ public class BankSystem {
                 throw new Exception("The account does not exitst!");
             }
             Account account = bank.GetAccount(name);
-            System.out.println("Enter the amount you want to deposit: ");
+            System.out.println("Enter the amount you want to withdraw: ");
             double amount = sc.nextDouble();
             WithdrawTransaction withdraw = new WithdrawTransaction(account, amount);
             bank.Execute(withdraw);
@@ -121,7 +124,7 @@ public class BankSystem {
 
             clearScreen();
             TerminalColor.printPurple("======|| Welcome to Bank ||======");
-            TerminalColor.printCyan("Enter your Choice: \n1.AddAccount \n2.Deposit \n3.Withdraw \n4.Transfer \n5.Print \n6.QUIT ");
+            TerminalColor.printCyan("Enter your Choice: \n1.AddAccount \n2.Deposit \n3.Withdraw \n4.Transfer \n5.Print \n6.PrintTransactions \n7.QUIT ");
 
             TerminalColor.printRed("⚠️ First you have to add two Account ⚠️");
 
@@ -158,6 +161,12 @@ public class BankSystem {
 
                 case MenuOption.PRINT:
                     Print(bank);
+                    System.out.println("Press Enter to continue...");
+                    sc.nextLine();
+                    break;
+
+                case MenuOption.PRINT_TRANSACTION_HISTORY:
+                    bank.PrintTranscationHistory();
                     System.out.println("Press Enter to continue...");
                     sc.nextLine();
                     break;

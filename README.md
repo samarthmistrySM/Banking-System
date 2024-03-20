@@ -1,49 +1,61 @@
 # Bank System
 
-A simple Java-based bank system implementation using Object-Oriented Programming principles.
+## Overview
 
-## Description
-
-This project implements a basic bank system in Java, demonstrating the use of classes, objects, inheritance, and encapsulation. It provides functionality for creating accounts, depositing and withdrawing money, transferring funds between accounts, and printing account details.
-
-You can find the source code for this project on [GitHub](https://github.com/geekysamop/bank-system).
+This Java-based bank system is designed to demonstrate Object-Oriented Programming principles by implementing a basic banking application. It offers functionalities such as account creation, depositing and withdrawing funds, transferring money between accounts, and viewing account details and transaction history.
 
 ## Features
 
-- Add new bank accounts
-- Deposit money into accounts
-- Withdraw money from accounts
-- Transfer funds between accounts
-- Print account details
-- Print transaction history
+- Create new bank accounts
+- Deposit and withdraw funds
+- Transfer money between accounts
+- View account details
+- Check transaction history
 
-## How to Use
+## Getting Started
 
-1. **Clone the repository:** https://github.com/geekysamop/Banking-System.git
-   
+### Prerequisites
 
-2. **Navigate to the project directory:** cd Banking-System
+- Java Development Kit (JDK) installed on your system
+- Git installed (optional for cloning the repository)
 
+### Installation
 
-3. **Compile the Java files:**
+1. Clone the repository:
 
+    ```bash
+    git clone https://github.com/geekysamop/Banking-System.git
+    ```
 
-4. **Run the program:** Run BankSystem.java file
+2. Navigate to the project directory:
 
+    ```bash
+    cd Banking-System
+    ```
 
-5. **Follow the on-screen prompts to interact with the bank system.**
+3. Compile the Java files:
 
-## Installation
+    ```bash
+    javac *.java
+    ```
 
-There's no specific installation process required. Just clone the repository, compile the Java files, and run the program as mentioned above.
+### Usage
 
-## Dependencies
+1. Run the program:
 
-This project has no external dependencies.
+    ```bash
+    java BankSystem
+    ```
+
+2. Follow the on-screen prompts to interact with the bank system.
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute to this project, please fork the repository, make your changes, and submit a pull request.
+Contributions to this project are welcomed! To contribute:
+
+1. Fork the repository
+2. Make your changes
+3. Submit a pull request
 
 ## License
 

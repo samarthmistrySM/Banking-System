@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import javax.sql.rowset.CachedRowSet;
-
 public class BankSystem {
 
     public static Scanner sc = new Scanner(System.in);

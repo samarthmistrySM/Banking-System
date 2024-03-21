@@ -9,8 +9,8 @@ public class BankSystem {
         DEPOSIT,
         WITHDRAW,
         TRANSFER,
+        ROLLBACK,
         PRINT,
-        PRINT_TRANSACTION_HISTORY,
         QUIT
     }
 
@@ -97,6 +97,20 @@ public class BankSystem {
         }
     }
 
+    public static void DoRollback(Bank bank){
+        bank.PrintTranscationHistory();
+        System.out.println();
+        System.out.println("Enter transaction # to rollback (0 for no rollback) " +  0 + " " + bank.geTransactions().size());
+        int result = sc.nextInt();
+
+        if (result == 0)
+            return;
+
+        bank.Rollback(bank.geTransactions().get(result - 1));
+        TerminalColor.printGreen("Rollback Completed..");
+        sc.nextLine();
+    }
+
     public static void Print(Bank bank){
         System.out.println("Enter the name of the account for which you want to print details: ");
         String name = sc.nextLine();
@@ -122,7 +136,7 @@ public class BankSystem {
 
             clearScreen();
             TerminalColor.printPurple("======|| Welcome to Bank ||======");
-            TerminalColor.printCyan("Enter your Choice: \n1.AddAccount \n2.Deposit \n3.Withdraw \n4.Transfer \n5.Print \n6.PrintTransactions \n7.QUIT ");
+            TerminalColor.printCyan("Enter your Choice: \n1.AddAccount \n2.Deposit \n3.Withdraw \n4.Transfer \n5.Rollback \n6.Print \n7.QUIT ");
 
             TerminalColor.printRed("⚠️ First you have to add two Account ⚠️");
 
@@ -157,14 +171,14 @@ public class BankSystem {
                     sc.nextLine();
                     break;
 
-                case MenuOption.PRINT:
-                    Print(bank);
+                case MenuOption.ROLLBACK:
+                    DoRollback(bank);
                     System.out.println("Press Enter to continue...");
                     sc.nextLine();
                     break;
 
-                case MenuOption.PRINT_TRANSACTION_HISTORY:
-                    bank.PrintTranscationHistory();
+                case MenuOption.PRINT:
+                    Print(bank);
                     System.out.println("Press Enter to continue...");
                     sc.nextLine();
                     break;

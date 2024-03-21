@@ -7,6 +7,10 @@ public class Bank {
 
     public Scanner sc =  new Scanner(System.in);
 
+    public List<Transaction> geTransactions (){
+        return _transactions;
+    }
+
     public Bank(){}
 
     public void AddAccount(Account account){

@@ -45,10 +45,9 @@ public class Transaction {
             if (_executed && _success) {
                 throw new Exception("Transaction previously executed!!");
             }
+
             _dateStamp = LocalDateTime.now();
             _executed = true;
-
-
         } catch (Exception e) {
             TerminalColor.printRed(e + "Try again..");
         }

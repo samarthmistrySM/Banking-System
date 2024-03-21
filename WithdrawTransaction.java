@@ -25,6 +25,7 @@ public class WithdrawTransaction extends Transaction {
         super.Execute();
         _success = _account.Withdraw(_amount);
 
+
         if (!_success)
             System.out.println("Insufficient balance!");
         Print();
@@ -38,7 +39,7 @@ public class WithdrawTransaction extends Transaction {
     public void Rollback() {
         super.Rollback();
         boolean _completed = _account.Deposit(_amount);
-
+        
         if (!_completed) {
             try {
                 throw new Exception("Rollback failed!");

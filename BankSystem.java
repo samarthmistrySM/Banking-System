@@ -100,7 +100,7 @@ public class BankSystem {
     public static void DoRollback(Bank bank){
         bank.PrintTranscationHistory();
         System.out.println();
-        System.out.println("Enter transaction # to rollback (0 for no rollback) " +  0 + " " + bank.geTransactions().size());
+        System.out.println("Enter transaction # to rollback (0 for no rollback) " +  0 + " from " + bank.geTransactions().size());
         int result = sc.nextInt();
 
         if (result == 0)
@@ -129,7 +129,7 @@ public class BankSystem {
     public static void main(String[] args) {
         sc = new Scanner(System.in);
         boolean isQuit = false;
-
+        int count = 0;
         Bank bank = new Bank();
 
         while (!isQuit) {
@@ -138,7 +138,9 @@ public class BankSystem {
             TerminalColor.printPurple("======|| Welcome to Bank ||======");
             TerminalColor.printCyan("Enter your Choice: \n1.AddAccount \n2.Deposit \n3.Withdraw \n4.Transfer \n5.Rollback \n6.Print \n7.QUIT ");
 
-            TerminalColor.printRed("⚠️ First you have to add two Account ⚠️");
+            if(count < 2){
+                TerminalColor.printRed("⚠️ First you have to add two Account ⚠️");
+            }
 
             int n = sc.nextInt();
 
@@ -149,6 +151,7 @@ public class BankSystem {
             switch (choice) {
                 case MenuOption.ADDACCOUNT:
                     NewAccount(bank);
+                    count++;
                     System.out.println("Press Enter to continue...");
                     sc.nextLine();
                     break;
